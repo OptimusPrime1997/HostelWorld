@@ -1,0 +1,60 @@
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1062, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1062, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`user`, CONSTRAINT `fk_bankAccount` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`))
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1451, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`user`, CONSTRAINT `fk_bankAccount` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`))
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`user`, CONSTRAINT `fk_bankAccount` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`) ON DELETE NO ACTION)
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1451, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`user`, CONSTRAINT `fk_bankAccount` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`) ON DELETE NO ACTION)
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`user`, CONSTRAINT `fk_bankAccount` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1451, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`user`, CONSTRAINT `fk_bankAccount` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`) ON DELETE NO ACTION ON UPDATE NO ACTION)
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`deposit`, CONSTRAINT `fk_bankAccount_deposit` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`))
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1451, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`hostelworld`.`deposit`, CONSTRAINT `fk_bankAccount_deposit` FOREIGN KEY (`bankAccount`) REFERENCES `bankaccount` (`bankAccount`))
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1062, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1062, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '6212261234567890101' for key 'PRIMARY'
+ERROR main org.hibernate.property.BasicPropertyAccessor - HHH000123: IllegalArgumentException in class: com.nju.entity.DepositPK, setter method of property: time
+ERROR main org.hibernate.property.BasicPropertyAccessor - HHH000091: Expected type: java.security.Timestamp, actual value: java.sql.Timestamp
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1062, SQLState: 23000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '1710001-2017-03-12 14:38:58' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1062, SQLState: 23000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Duplicate entry '1710001-2017-03-12 14:38:58' for key 'PRIMARY'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1364, SQLState: HY000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Field 'time' doesn't have a default value
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1364, SQLState: HY000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Field 'time' doesn't have a default value
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1064, SQLState: 42000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where orderno = '172000220170312170726'' at line 1
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1064, SQLState: 42000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where orderno = '172000220170312170726'' at line 1
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1064, SQLState: 42000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where orderno = '172000220170312171059'' at line 1
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1064, SQLState: 42000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where orderno = '172000220170312171059'' at line 1
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1064, SQLState: 42000
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where orderno ='172000220170312171242'' at line 1
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1064, SQLState: 42000
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order where orderno ='172000220170312171242'' at line 1
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1054, SQLState: 42S22
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'orderno' in 'where clause'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Warning Code: 1054, SQLState: 42S22
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'orderno' in 'where clause'
+WARN main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - SQL Error: 1054, SQLState: 42S22
+ERROR main org.hibernate.engine.jdbc.spi.SqlExceptionHelper - Unknown column 'hsotel' in 'where clause'

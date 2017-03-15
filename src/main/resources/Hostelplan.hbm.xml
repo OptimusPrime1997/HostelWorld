@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.nju.entity.Hostelplan" table="hostelplan" schema="hostelworld">
+        <id name="hostelplanno" column="hostelplanno"/>
+        <property name="hostelno" column="hostelno"/>
+        <property name="startDate" column="startDate"/>
+        <property name="endDate" column="endDate"/>
+        <property name="roomType" column="roomType">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.nju.util.RoomType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+
+        <property name="price" column="price"/>
+    </class>
+</hibernate-mapping>

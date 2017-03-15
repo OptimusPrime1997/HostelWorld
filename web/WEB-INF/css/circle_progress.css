@@ -1,0 +1,37 @@
+body{
+    background:#fff;
+}
+
+.canvas-wrap{
+    position: relative;
+    float:left;
+    width: 100px;
+    height: 100px;
+    margin: 10px 20px 0 10px;
+}
+
+.circle-process{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+}
+
+.text{
+    position: absolute;
+    top : 0;
+    left : 0;
+    width: 100px;
+    text-align: center;
+}
+.text .num{
+    font-size: 20px;
+    margin: 30px 0 0 0;
+    color: #fd6424;
+}
+.text .tit{
+    font-size: 12px;
+    margin: 8px 0 0;
+    color: #aeaeae;
+}

@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.nju.entity.Payment" table="payment" schema="hostelworld">
+        <!--<composite-id mapped="true" class="com.nju.entity.PaymentPK">
+            <key-property name="hostelno" column="hostelno"/>
+            <key-property name="paytime" column="paytime"/>
+        </composite-id>-->
+        <id name="payno" column="payno"/>
+        <property name="hostelno" column="hostelno"/>
+        <property name="paytime" column="paytime"/>
+        <property name="inCome" column="inCome"/>
+        <property name="ratio" column="ratio"/>
+        <property name="fee" column="fee"/>
+        <property name="outcome" column="outcome"/>
+    </class>
+</hibernate-mapping>

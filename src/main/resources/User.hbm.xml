@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.nju.entity.User" table="user" schema="hostelworld">
+        <id name="userno" column="userno"/>
+        <property name="password" column="password"/>
+        <property name="userType" column="userType"/>
+        <property name="name" column="name"/>
+        <property name="phoneNum" column="phoneNum"/>
+        <property name="balance" column="balance"/>
+        <property name="address" column="address"/>
+        <property name="bankAccount" column="bankAccount"/>
+        <property name="state" column="state">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.nju.util.State</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>

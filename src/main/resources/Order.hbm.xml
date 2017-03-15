@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.nju.entity.Order" table="order" schema="hostelworld">
+        <!--<composite-id mapped="true" class="com.nju.entity.OrderPK">-->
+            <!--<key-property name="hostelno" column="hostelno"/>-->
+            <!--<key-property name="ordertime" column="ordertime"/>-->
+        <!--</composite-id>-->
+        <id name="orderno" column="orderno"/>
+        <property name="hostelno" column="hostelno"/>
+        <property name="ordertime" column="ordertime"/>
+        <property name="roomType" column="roomType">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.nju.util.RoomType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property name="roomPrice" column="roomPrice"/>
+        <property name="startTime" column="startTime"/>
+        <property name="endTime" column="endTime"/>
+        <property name="roomNum" column="roomNum"/>
+        <property name="amount" column="amount"/>
+        <property name="saleRatio" column="saleRatio"/>
+        <property name="saleOff" column="saleOff"/>
+        <property name="pay" column="pay"/>
+        <property name="memberno" column="memberno"/>
+        <property name="payType" column="payType">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.nju.util.PayType</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <property name="orderState" column="orderState">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.nju.util.OrderState</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>

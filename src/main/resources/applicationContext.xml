@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='utf-8'?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <context:annotation-config/>
+    <!--扫描注解包-->
+    <context:component-scan base-package="com.nju.*"/>
+
+    <!-- 为了使用Autowired标签，我们必须在这里配置一个bean的后置处理器 -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <!-- 为了使用@Resource标签，这里必须配置一个后置处理器 -->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <!--配置文件加载 init.properties-->
+    <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:jdbc.properties"/>
+    </bean>
+    <!-- 使用Tomcat JDBC连接(池) -->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClass}"></property>
+        <property name="url"
+                  value="${jdbc.url}?useSSL=false&amp;autoConnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!-- 配置sessionFactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="packagesToScan">
+            <list>
+                <value>com.nju.*</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"></property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+
+                <!-- <prop key="hibernate.current_session_context_class">
+                     org.springframework.orm.hibernate4.SpringSessionContext
+                 </prop>-->
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <!-- 使用getCurrentSession()方法，必须配置此属性 -->
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>Bankaccount.hbm.xml</value>
+                <value>Deposit.hbm.xml</value>
+                <value>Hostelplan.hbm.xml</value>
+                <value>Order.hbm.xml</value>
+                <value>Payment.hbm.xml</value>
+                <value>Room.hbm.xml</value>
+                <value>User.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!--user-->
+    <bean id="userDaoImpl" class="com.nju.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userServiceImpl" class="com.nju.service.impl.UserServiceImpl">
+        <property name="userDaoImpl" ref="userDaoImpl"/>
+    </bean>
+    <!--bankaccount-->
+    <bean id="bankaccountDaoImpl" class="com.nju.dao.impl.BankaccountDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="bankaccountServiceImpl" class="com.nju.service.impl.BankaccountServiceImpl">
+        <property name="bankaccountDaoImpl" ref="bankaccountDaoImpl"/>
+    </bean>
+    <!--deposit-->
+    <bean id="depositDaoImpl" class="com.nju.dao.impl.DepositDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="depositServiceImpl" class="com.nju.service.impl.DepositServiceImpl">
+        <property name="depositDaoImpl" ref="depositDaoImpl"/>
+    </bean>
+    <!--hostelplan-->
+    <bean id="hostelplanDaoImpl" class="com.nju.dao.impl.HostelplanDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="hostelplanServiceImpl" class="com.nju.service.impl.HostelplanServiceImpl">
+        <property name="hostelplanDaoImpl" ref="hostelplanDaoImpl"/>
+    </bean>
+    <!--order-->
+    <bean id="orderDaoImpl" class="com.nju.dao.impl.OrderDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="orderServiceImpl" class="com.nju.service.impl.OrderServiceImpl">
+        <property name="orderDaoImpl" ref="orderDaoImpl"/>
+    </bean>
+    <!--payment-->
+    <bean id="paymentDaoImpl" class="com.nju.dao.impl.PaymentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="paymentServiceImpl" class="com.nju.service.impl.PaymentServiceImpl">
+        <property name="paymentDaoImpl" ref="paymentDaoImpl"/>
+    </bean>
+    <!--room-->
+    <bean id="roomDaoImpl" class="com.nju.dao.impl.RoomDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="roomServiceImpl" class="com.nju.service.impl.RoomServiceImpl">
+        <property name="roomDaoImpl" ref="roomDaoImpl"/>
+    </bean>
+</beans>
