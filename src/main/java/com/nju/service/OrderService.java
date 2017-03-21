@@ -1,6 +1,7 @@
 package com.nju.service;
 
 import com.nju.entity.Order;
+import com.nju.util.OrderState;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -20,4 +21,14 @@ public interface OrderService {
 	public Order get(String orderno);
 
 	public List<Order> findAll();
+
+	public List<Order> findList(OrderState orderState, List<Order> orderList);
+
+	public List<Order> findList(OrderState orderState);
+
+	public List<Order> findListByUser(String userno, OrderState orderState);
+
+	public List<Order> findListByUser(String userno);
+
+	public List<Order> findListByHostel(String hostelno, OrderState orderState);
 }

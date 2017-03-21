@@ -19,7 +19,7 @@
     <div class="col-md-6 col-lg-6 col-md-offset-3 col-lg-offset-3">
         <div class="row pageBg">
             <div class="box pageBg">
-                <form action="" method="post">
+                <form action="<%=response.encodeURL(request.getContextPath()+"/LoginServlet")%>" method="post">
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon">账号</span>
                         <input type="text" name="userno" id="Userno" class="form-control"
@@ -28,7 +28,7 @@
                     <div class="blank40"></div>
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon">密码</span>
-                        <input type="text" name="password" class="form-control" placeholder="请输入您的密码">
+                        <input type="password" name="password" class="form-control" placeholder="请输入您的密码">
                     </div>
                     <div class="blank20"></div>
                     <div class="row  m_inline">

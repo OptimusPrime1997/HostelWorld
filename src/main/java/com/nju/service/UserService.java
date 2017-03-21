@@ -9,7 +9,9 @@ import java.util.List;
  * Created by mark on 4/24/15.
  */
 public interface UserService {
-	public void add(User u);
+	public void save(User u);
+
+	public String add(User u);
 
 	public void delete(String uid);
 
@@ -19,6 +21,17 @@ public interface UserService {
 
 	public List<User> findAll();
 
-	public boolean checkLogin(String uid,String passwd);
+	/**
+	 * false:0
+	 * true:1 2 3
+	 *
+	 * @param uid
+	 * @param passwd
+	 * @return
+	 */
+	public User checkLogin(String uid, String passwd);
 
+	public List<User> findToPay();
+
+	public List<User> findList(int userType);
 }

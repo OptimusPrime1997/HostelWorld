@@ -15,6 +15,9 @@ import java.util.List;
 @Service
 @Transactional
 public class RoomServiceImpl implements RoomService {
+//	public RoomServiceImpl() {
+//		this.roomDaoImpl= DaoFactory.getRoomDao();
+//	}
 
 	@Autowired
 	private RoomDao roomDaoImpl;
@@ -46,4 +49,10 @@ public class RoomServiceImpl implements RoomService {
 	public List<Room> findAll() {
 		return roomDaoImpl.findAll();
 	}
+
+	public List<Room> findListByHostel(String hostelno) {
+		return  roomDaoImpl.findListByHostel(hostelno);
+	}
+
+
 }

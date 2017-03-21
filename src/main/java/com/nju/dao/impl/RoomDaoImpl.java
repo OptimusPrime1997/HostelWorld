@@ -1,12 +1,14 @@
 package com.nju.dao.impl;
 
 import com.nju.dao.RoomDao;
+import com.nju.entity.Order;
 import com.nju.entity.Room;
 import com.nju.entity.RoomPK;
 import org.hibernate.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -72,4 +74,21 @@ public class RoomDaoImpl implements RoomDao {
 		trans.commit();
 		return list;
 	}
+
+	public List<Room> findListByHostel(String hostelno) {
+		Session session = sessionFactory.getCurrentSession();
+		Transaction trans = session.beginTransaction();
+		Query query = session.createQuery("from Room where hostelno=?");
+		query.setParameter(0, hostelno);
+		List list = query.list();
+		List<Room> roomList = new ArrayList<Room>();
+		Room o = null;
+		for (int i = 0; i < list.size(); i++) {
+			o = (Room) list.get(i);
+			roomList.add(o);
+		}
+		trans.commit();
+		return roomList;
+	}
+
 }

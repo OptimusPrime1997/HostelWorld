@@ -263,6 +263,13 @@ footer p {
     transition: background 0.2s, color 0.2s;
 }
 
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .blank50 {
     height: 40px;
     clear: both;
@@ -360,7 +367,7 @@ footer p {
 
 .m_center {
     display: block;
-    float: left;
+    float: none;
     horiz-align: center;
 }
 

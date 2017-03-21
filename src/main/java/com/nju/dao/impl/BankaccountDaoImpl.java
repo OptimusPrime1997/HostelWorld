@@ -34,7 +34,7 @@ public class BankaccountDaoImpl implements BankaccountDao {
 	public void delete(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Transaction trans = session.beginTransaction();
-		Query query = session.createSQLQuery("delete from bankaccount where bankAccount ='"+id+"'");
+		Query query = session.createSQLQuery("delete from bankaccount where bankAccount ='" + id + "'");
 //		query.setString(0,id);
 		query.executeUpdate();
 		trans.commit();

@@ -7,13 +7,22 @@ import java.io.Serializable;
 /**
  * Created by OptimusPrime on 2017.3.10.
  */
-public class User implements  Serializable{
+public class User implements Serializable, Comparable {
+	/**
+	 * 正常为  17*****
+	 * 待审批为10*****
+	 */
 	private String userno;
 	private String password;
+	/**
+	 * 0 待审批;1 会员;2 酒店;3 总经理
+	 */
 	private int userType;
 	private String name;
 	private String phoneNum;
+	private String id;
 	private double balance;
+	private double score;
 	private String address;
 	private String bankAccount;
 	private State state;
@@ -21,13 +30,15 @@ public class User implements  Serializable{
 	public User() {
 	}
 
-	public User(String userno, String password, int userType, String name, String phoneNum, double balance, String address, String bankAccount, State state) {
+	public User(String userno, String password, int userType, String name, String phoneNum, String id, double balance, double score, String address, String bankAccount, State state) {
 		this.userno = userno;
 		this.password = password;
 		this.userType = userType;
 		this.name = name;
 		this.phoneNum = phoneNum;
+		this.id = id;
 		this.balance = balance;
+		this.score = score;
 		this.address = address;
 		this.bankAccount = bankAccount;
 		this.state = state;
@@ -65,6 +76,14 @@ public class User implements  Serializable{
 		this.name = name;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getPhoneNum() {
 		return phoneNum;
 	}
@@ -79,6 +98,14 @@ public class User implements  Serializable{
 
 	public void setBalance(double balance) {
 		this.balance = balance;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 
 	public String getAddress() {
@@ -136,6 +163,8 @@ public class User implements  Serializable{
 		result = 31 * result + (phoneNum != null ? phoneNum.hashCode() : 0);
 		temp = Double.doubleToLongBits(balance);
 		result = 31 * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(score);
+		result = 31 * result + (int) (temp ^ (temp >>> 32));
 		result = 31 * result + (address != null ? address.hashCode() : 0);
 		result = 31 * result + (bankAccount != null ? bankAccount.hashCode() : 0);
 		result = 31 * result + (state != null ? state.hashCode() : 0);
@@ -150,10 +179,16 @@ public class User implements  Serializable{
 				", userType=" + userType +
 				", name='" + name + '\'' +
 				", phoneNum='" + phoneNum + '\'' +
+				", id='" + id + '\'' +
 				", balance=" + balance +
+				", score=" + score +
 				", address='" + address + '\'' +
 				", bankAccount='" + bankAccount + '\'' +
 				", state=" + state +
 				'}';
+	}
+
+	public int compareTo(Object o) {
+		return Integer.parseInt(userno) - Integer.parseInt(((User) o).getUserno());
 	}
 }

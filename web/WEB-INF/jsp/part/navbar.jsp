@@ -47,7 +47,7 @@
                     <a href="<%=response.encodeURL(request.getContextPath()+"/LogoutServlet")%>">
                         <button type="button" class="btn btn-success" id="loginBt">
                             <span class="glyphicon glyphicon-log-in"></span>
-                            注销
+                            登出
                         </button>
                     </a>
 

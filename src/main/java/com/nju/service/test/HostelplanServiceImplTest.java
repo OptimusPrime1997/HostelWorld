@@ -3,6 +3,7 @@ package com.nju.service.test;
 import com.nju.entity.Hostelplan;
 import com.nju.entity.Room;
 import com.nju.service.impl.HostelplanServiceImpl;
+import com.nju.util.PlanState;
 import com.nju.util.RoomType;
 import com.nju.util.State;
 import org.springframework.beans.factory.BeanFactory;
@@ -36,10 +37,10 @@ public class HostelplanServiceImplTest {
 	public void Aadd() throws Exception {
 //		@Autowired	123456	1	吴会员	18256781238	10000	江苏省南京市鼓楼区珠江路5号	6212261234567890005	NORMAL
 		Hostelplan u = new Hostelplan("17200031",
-				"1720003",new Date(
-				2017-1900,0,1),
-				new Date(2018-1900,0,1),
-				RoomType.STANDARD,155);
+				"1720003", new Date(
+				2017 - 1900, 0, 1),
+				new Date(2018 - 1900, 0, 1),
+				RoomType.STANDARD, 155, PlanState.NOW);
 		hostelplanServiceImpl.add(u);
 		System.out.println("add member hostelplan successfully!id:" + u.getHostelplanno());
 	}
@@ -53,10 +54,10 @@ public class HostelplanServiceImplTest {
 	//	@Test
 	public void Bupdate() throws Exception {
 		Hostelplan u = new Hostelplan("17200031",
-				"1720003",new Date(
-				2017-1900,0,1),
-				new Date(2018-1900,0,1),
-				RoomType.STANDARD,185);
+				"1720003", new Date(
+				2017 - 1900, 0, 1),
+				new Date(2018 - 1900, 0, 1),
+				RoomType.STANDARD, 185, PlanState.NOW);
 		hostelplanServiceImpl.update(u);
 		System.out.println("update member hostelplan successfully!id:" + u.getHostelplanno());
 	}

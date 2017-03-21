@@ -2,6 +2,7 @@ package com.nju.dao;
 
 
 import com.nju.entity.Order;
+import com.nju.util.OrderState;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -21,4 +22,11 @@ public interface OrderDao {
 
 	public List<Order> findAll();
 
+	public List<Order> findListByUser(String userno, OrderState orderState);
+
+	public List<Order> findListByHostel(String hostelno, OrderState orderState);
+
+	public List<Order> findListByUser(String userno);
+
+	public List<Order> findList(OrderState orderState);
 }

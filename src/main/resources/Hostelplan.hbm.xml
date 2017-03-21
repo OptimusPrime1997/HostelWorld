@@ -17,5 +17,11 @@
         </property>
 
         <property name="price" column="price"/>
+        <property name="planState" column="planState">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.nju.util.PlanState</param>
+                <param name="type">12</param>
+            </type>
+        </property>
     </class>
 </hibernate-mapping>

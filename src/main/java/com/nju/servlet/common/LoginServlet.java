@@ -1,7 +1,9 @@
 package com.nju.servlet.common;
 
-import com.nju.service.impl.UserServiceImpl;
+import com.nju.entity.User;
+import com.nju.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,18 +15,16 @@ import java.io.IOException;
 /**
  * Created by OptimusPrime on 2017.3.15.
  */
+@Component
 public class LoginServlet extends HttpServlet {
 	@Autowired
-	private UserServiceImpl userServiceImpl;
+	private UserService userServiceImpl;
 
-	public LoginServlet() {
-	}
-
-	public UserServiceImpl getUserServiceImpl() {
+	public UserService getUserServiceImpl() {
 		return userServiceImpl;
 	}
 
-	public void setUserServiceImpl(UserServiceImpl userServiceImpl) {
+	public void setUserServiceImpl(UserService userServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
 	}
 
@@ -39,15 +39,37 @@ public class LoginServlet extends HttpServlet {
 //		super.doPost(req, resp);
 		String userid = req.getParameter("userno");
 		String password = req.getParameter("password");
+		System.out.println("userid:" + userid + "password:" + password);
 		if (userid != null && password != null) {
-			boolean result = userServiceImpl.checkLogin(userid, password);
-			if (result == true) {
+			if (userServiceImpl == null) {
+				System.out.println("autowired failed!");
+			}
+			User user = userServiceImpl.checkLogin(userid, password);
+			if (user != null) {
+				System.out.println("LoginServlet:dopost->" + user.toString());
 				HttpSession session = req.getSession(true);
 				session.setAttribute("userno", userid);
+				session.setAttribute("userType", user.getUserType());
+				session.setAttribute("user", user);
+				String url = "/LoginServlet";
+				switch (user.getUserType()) {
+					case 1:
+						url = "/ReserveServlet";
+						break;
+					case 2:
+						url = "/HostelManageServlet";
+						break;
+					case 3:
+						url = "/CheckInfoServlet";
+						break;
+					default:
+						System.out.println("LoginServlet->dopost error!");
+				}
 //				req.getRequestDispatcher(resp.encodeURL("/jsp/common/login.jsp")).forward(req, resp);
-				req.getRequestDispatcher(resp.encodeURL("/ReserveServlet"));
+				req.getRequestDispatcher(resp.encodeURL(url)).forward(req, resp);
 			} else {
-
+				System.out.println("You input the password is wrong!");
+				req.getRequestDispatcher(resp.encodeURL("/jsp/common/login.jsp")).forward(req, resp);
 			}
 		}
 

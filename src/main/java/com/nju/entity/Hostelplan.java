@@ -1,5 +1,6 @@
 package com.nju.entity;
 
+import com.nju.util.PlanState;
 import com.nju.util.RoomType;
 
 import java.io.Serializable;
@@ -15,20 +16,19 @@ public class Hostelplan implements Serializable {
 	private Date endDate;
 	private RoomType roomType;
 	private int price;
+	private PlanState planState;
 
 	public Hostelplan() {
 	}
 
-	public Hostelplan(String hostelplanno,
-	                  String hostelno, Date startDate,
-	                  Date endDate, RoomType roomType,
-	                  int price) {
+	public Hostelplan(String hostelplanno, String hostelno, Date startDate, Date endDate, RoomType roomType, int price, PlanState planState) {
 		this.hostelplanno = hostelplanno;
 		this.hostelno = hostelno;
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.roomType = roomType;
 		this.price = price;
+		this.planState = planState;
 	}
 
 	public Date getStartDate() {
@@ -79,6 +79,13 @@ public class Hostelplan implements Serializable {
 		this.price = price;
 	}
 
+	public PlanState getPlanState() {
+		return planState;
+	}
+
+	public void setPlanState(PlanState planState) {
+		this.planState = planState;
+	}
 
 	@Override
 	public boolean equals(Object o) {

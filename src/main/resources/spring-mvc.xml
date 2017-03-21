@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
+
+    <!-- 自动扫描@Controller注入为bean -->
+    <context:component-scan base-package="com.nju.*"/>
+
+    <!-- 以下为SpringMVC配置 -->
+    <mvc:annotation-driven>
+        <!-- 返回json数据，@response使用 -->
+        <mvc:message-converters register-defaults="true">
+            <bean
+                    class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/views"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+
+
+
+
+    <context:annotation-config/>
+    <!--扫描注解包-->
+    <context:component-scan base-package="com.nju.*"/>
+
+    <!-- 为了使用Autowired标签，我们必须在这里配置一个bean的后置处理器 -->
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+    <!-- 为了使用@Resource标签，这里必须配置一个后置处理器 -->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+
+    <!--配置文件加载 init.properties-->
+    <bean id="placeholderConfig" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations" value="classpath:jdbc.properties"/>
+    </bean>
+    <!-- 使用Tomcat JDBC连接(池) -->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.driverClass}"></property>
+        <property name="url"
+                  value="${jdbc.url}?useSSL=false&amp;autoConnect=true&amp;useUnicode=true&amp;characterEncoding=utf-8"></property>
+        <property name="username" value="${jdbc.username}"></property>
+        <property name="password" value="${jdbc.password}"></property>
+    </bean>
+
+    <!-- 配置sessionFactory-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="packagesToScan">
+            <list>
+                <value>com.nju.*</value>
+            </list>
+        </property>
+        <property name="dataSource" ref="dataSource"></property>
+
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+
+                <!-- <prop key="hibernate.current_session_context_class">
+                     org.springframework.orm.hibernate4.SpringSessionContext
+                 </prop>-->
+                <prop key="hibernate.current_session_context_class">thread</prop>
+                <!-- 使用getCurrentSession()方法，必须配置此属性 -->
+            </props>
+        </property>
+        <property name="mappingResources">
+            <list>
+                <value>Bankaccount.hbm.xml</value>
+                <value>Deposit.hbm.xml</value>
+                <value>Hostelplan.hbm.xml</value>
+                <value>Order.hbm.xml</value>
+                <value>Payment.hbm.xml</value>
+                <value>Room.hbm.xml</value>
+                <value>User.hbm.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!--user-->
+    <bean id="userDaoImpl" class="com.nju.dao.impl.UserDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="userServiceImpl" class="com.nju.service.impl.UserServiceImpl">
+        <property name="userDaoImpl" ref="userDaoImpl"/>
+    </bean>
+    <!--bankaccount-->
+    <bean id="bankaccountDaoImpl" class="com.nju.dao.impl.BankaccountDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="bankaccountServiceImpl" class="com.nju.service.impl.BankaccountServiceImpl">
+        <property name="bankaccountDaoImpl" ref="bankaccountDaoImpl"/>
+    </bean>
+    <!--deposit-->
+    <bean id="depositDaoImpl" class="com.nju.dao.impl.DepositDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="depositServiceImpl" class="com.nju.service.impl.DepositServiceImpl">
+        <property name="depositDaoImpl" ref="depositDaoImpl"/>
+    </bean>
+    <!--hostelplan-->
+    <bean id="hostelplanDaoImpl" class="com.nju.dao.impl.HostelplanDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="hostelplanServiceImpl" class="com.nju.service.impl.HostelplanServiceImpl">
+        <property name="hostelplanDaoImpl" ref="hostelplanDaoImpl"/>
+    </bean>
+    <!--order-->
+    <bean id="orderDaoImpl" class="com.nju.dao.impl.OrderDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="orderServiceImpl" class="com.nju.service.impl.OrderServiceImpl">
+        <property name="orderDaoImpl" ref="orderDaoImpl"/>
+    </bean>
+    <!--payment-->
+    <bean id="paymentDaoImpl" class="com.nju.dao.impl.PaymentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="paymentServiceImpl" class="com.nju.service.impl.PaymentServiceImpl">
+        <property name="paymentDaoImpl" ref="paymentDaoImpl"/>
+    </bean>
+    <!--room-->
+    <bean id="roomDaoImpl" class="com.nju.dao.impl.RoomDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    <bean id="roomServiceImpl" class="com.nju.service.impl.RoomServiceImpl">
+        <property name="roomDaoImpl" ref="roomDaoImpl"/>
+    </bean>
+
+    <!--<bean id="loginServlet" class="com.nju.servlet.common.LoginServlet">-->
+        <!--<property name="userServiceImpl" ref="userServiceImpl"/>-->
+    <!--</bean>-->
+
+</beans>

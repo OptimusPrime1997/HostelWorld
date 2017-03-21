@@ -35,6 +35,9 @@
                 <li>
                     <a href="<%=response.encodeURL(request.getContextPath()+"/HostelPlanServlet")%>">经营计划</a>
                 </li>
+               <%-- <li>
+                    <a href="<%=response.encodeURL(request.getContextPath()+"/HostelRoomServlet")%>">房间管理</a>
+                </li>--%>
                 <li>
                     <a href="<%=response.encodeURL(request.getContextPath()+"/HostelInfoServlet")%>">酒店信息</a>
                 </li>
@@ -47,7 +50,7 @@
                     <a href="<%=response.encodeURL(request.getContextPath()+"/LogoutServlet")%>">
                         <button type="button" class="btn btn-success" id="loginBt">
                             <span class="glyphicon glyphicon-log-in"></span>
-                            注销
+                            登出
                         </button>
                     </a>
 

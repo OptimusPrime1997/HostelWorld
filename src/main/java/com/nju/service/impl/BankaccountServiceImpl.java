@@ -1,8 +1,6 @@
 package com.nju.service.impl;
 
 import com.nju.dao.BankaccountDao;
-import com.nju.dao.BankaccountDao;
-import com.nju.entity.Bankaccount;
 import com.nju.entity.Bankaccount;
 import com.nju.service.BankaccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,10 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class BankaccountServiceImpl implements BankaccountService{
+public class BankaccountServiceImpl implements BankaccountService {
+//	public BankaccountServiceImpl() {
+//		this.bankaccountDaoImpl = DaoFactory.getBankaccountDao();
+//	}
 
 	@Autowired
 	private BankaccountDao bankaccountDaoImpl;

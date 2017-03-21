@@ -11,11 +11,9 @@
 </footer>
 
 <!-- jQuery -->
-<script src='../../js/jquery.js'></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src='../../js/bootstrap.min.js'></script>
-<script src='../../js/docs.min.js'></script>
+
 
 <!--Echart core javascript-->
 <!--<script src="http://echarts.baidu.com/dist/echarts.min.js"></script>-->

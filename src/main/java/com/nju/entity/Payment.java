@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 /**
  * Created by OptimusPrime on 2017.3.10.
  */
-public class Payment implements Serializable {
+public class Payment implements Serializable, Comparable {
 	private String payno;
 	private String hostelno;
 	private Timestamp paytime;
@@ -134,6 +134,10 @@ public class Payment implements Serializable {
 				", fee=" + fee +
 				", outcome=" + outcome +
 				'}';
+	}
+
+	public int compareTo(Object o) {
+		return this.paytime.compareTo(((Payment) o).getPaytime());
 	}
 }
 

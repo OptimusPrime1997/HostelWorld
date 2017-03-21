@@ -20,4 +20,6 @@ public interface RoomDao {
 
 	public List<Room> findAll();
 
+	public List<Room> findListByHostel(String hostelno);
+
 }

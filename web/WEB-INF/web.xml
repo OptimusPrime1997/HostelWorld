@@ -5,35 +5,34 @@
          id="WebApp_ID" version="3.0">
     <display-name>HostelWorld</display-name>
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
-        <welcome-file>/jsp/index.jsp</welcome-file>
+        <welcome-file>jsp/common/login.jsp</welcome-file>
+        <!--<welcome-file>index.jsp</welcome-file>-->
     </welcome-file-list>
-
-    <!-- 把 Spring 容器集成到 Web 应用里面 -->
-    <!--<listener>
-        <listener-class>
-            org.springframework.web.context.ContextLoaderListener
-        </listener-class>
-    </listener>-->
 
     <!-- spring配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:/applicationContext.xml</param-value>
     </context-param>
+    <!--<context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>
+    <context-param>
+        <param-name/>
+        <param-value/>
+    </context-param>-->
 
     <!--DispatcherServlet是前端控制器设计模式的实现，提供Spring Web MVC的集中访问点，而且负责职责的分派，
     而且与Spring IoC容器无缝集成，从而可以获得Spring的所有好处。-->
     <!--DispatcherServlet会默认加载[servlet-name]-servlet.xml文件-->
-    <!--<servlet>
-        <servlet-name>spring</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>-->
+
+    <!-- 把 Spring 容器集成到 Web 应用里面 -->
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
 
     <!--解决springmvc传递给后台的中文数据乱码问题-->
     <filter>
@@ -43,6 +42,10 @@
             <param-name>encoding</param-name>
             <param-value>utf-8</param-value>
         </init-param>
+        <init-param>
+            <param-name>forceEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
     </filter>
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
@@ -51,88 +54,316 @@
 
     <!--my servlet registe-->
     <!--common package-->
+
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>com.nju.servlet.common.LoginServlet</servlet-class>
+        <description>spring mvc servlet</description>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <!-- 此处配置的是SpringMVC的配置文件 -->
+            <param-value>classpath:server-servlet.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
+        <servlet-name>dispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.css</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.js</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.jpg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.png</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.svg</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.woff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.woff2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.tff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>default</servlet-name>
+        <url-pattern>*.swf</url-pattern>
+    </servlet-mapping>
+
+    <!--common package-->
+    <servlet>
+        <servlet-name>loginServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>loginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>RegisteServlet</servlet-name>
-        <servlet-class>com.nju.servlet.common.RegisteServlet</servlet-class>
+        <servlet-name>registeServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>RegisteServlet</servlet-name>
+        <servlet-name>registeServlet</servlet-name>
         <url-pattern>/RegisteServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>com.nju.servlet.common.LogoutServlet</servlet-class>
+        <servlet-name>logoutServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-name>logoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
     </servlet-mapping>
 
     <!--hostel package-->
     <servlet>
-        <servlet-name>HostelInfoServlet</servlet-name>
-        <servlet-class>com.nju.servlet.hostel.HostelInfoServlet</servlet-class>
+        <servlet-name>hostelInfoServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HostelInfoServlet</servlet-name>
+        <servlet-name>hostelInfoServlet</servlet-name>
         <url-pattern>/HostelInfoServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>HostelManageServlet</servlet-name>
-        <servlet-class>com.nju.servlet.hostel.HostelManageServlet</servlet-class>
+        <servlet-name>hostelManageServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HostelManageServlet</servlet-name>
+        <servlet-name>hostelManageServlet</servlet-name>
         <url-pattern>/HostelManageServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>HostelPlanServlet</servlet-name>
-        <servlet-class>com.nju.servlet.hostel.HostelPlanServlet</servlet-class>
+        <servlet-name>hostelPlanServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>HostelPlanServlet</servlet-name>
+        <servlet-name>hostelPlanServlet</servlet-name>
         <url-pattern>/HostelPlanServlet</url-pattern>
     </servlet-mapping>
 
-    <!--manager package-->
     <servlet>
-        <servlet-name>CheckInfoServlet</servlet-name>
-        <servlet-class>com.nju.servlet.manager.CheckInfoServlet</servlet-class>
+        <servlet-name>hostelRoomServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CheckInfoServlet</servlet-name>
+        <servlet-name>hostelRoomServlet</servlet-name>
+        <url-pattern>/HostelRoomServlet</url-pattern>
+    </servlet-mapping>
+    
+    <!--hostel->action   package-->
+    <servlet>
+        <servlet-name>checkInServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkInServlet</servlet-name>
+        <url-pattern>/CheckInServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>makeCheckServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>makeCheckServlet</servlet-name>
+        <url-pattern>/MakeCheckServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>publishPlanServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>publishPlanServlet</servlet-name>
+        <url-pattern>/PublishPlanServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>hostelModifyServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>hostelModifyServlet</servlet-name>
+        <url-pattern>/HostelModifyServlet</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    <!--manager package-->
+    <servlet>
+        <servlet-name>checkInfoServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>checkInfoServlet</servlet-name>
         <url-pattern>/CheckInfoServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>ManageInfoServlet</servlet-name>
-        <servlet-class>com.nju.servlet.manager.ManageInfoServlet</servlet-class>
+        <servlet-name>manageInfoServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>ManageInfoServlet</servlet-name>
+        <servlet-name>manageInfoServlet</servlet-name>
         <url-pattern>/ManageInfoServlet</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>PayoffServlet</servlet-name>
-        <servlet-class>com.nju.servlet.manager.PayoffServlet</servlet-class>
+        <servlet-name>payoffServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PayoffServlet</servlet-name>
+        <servlet-name>payoffServlet</servlet-name>
         <url-pattern>/PayoffServlet</url-pattern>
     </servlet-mapping>
+    
+    
+<!--manager->action-->
+    <servlet>
+        <servlet-name>modifyCheckServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modifyCheckServlet</servlet-name>
+        <url-pattern>/ModifyCheckServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>joinCheckServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>joinCheckServlet</servlet-name>
+        <url-pattern>/JoinCheckServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>managerPayServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>managerPayServlet</servlet-name>
+        <url-pattern>/ManagerPayServlet</url-pattern>
+    </servlet-mapping>
+
+
+
+    <!--user package-->
+    <servlet>
+        <servlet-name>consumeInfoServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>consumeInfoServlet</servlet-name>
+        <url-pattern>/ConsumeInfoServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>individualServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>individualServlet</servlet-name>
+        <url-pattern>/IndividualServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>myOrderServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myOrderServlet</servlet-name>
+        <url-pattern>/MyOrderServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>reserveServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>reserveServlet</servlet-name>
+        <url-pattern>/ReserveServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--user->actionServlet-->
+    <servlet>
+        <servlet-name>myReserveServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myReserveServlet</servlet-name>
+        <url-pattern>/MyReserveServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>cancelServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>cancelServlet</servlet-name>
+        <url-pattern>/CancelServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>modifyServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>modifyServlet</servlet-name>
+        <url-pattern>/ModifyServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logoffServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logoffServlet</servlet-name>
+        <url-pattern>/LogoffServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>chargeServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>chargeServlet</servlet-name>
+        <url-pattern>/ChargeServlet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exchangeServlet</servlet-name>
+        <servlet-class>com.nju.servlet.DelegatingServletProxy</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exchangeServlet</servlet-name>
+        <url-pattern>/ExchangeServlet</url-pattern>
+    </servlet-mapping>
+
+ 
     <!--my servlet registe completed-->
 
 </web-app>

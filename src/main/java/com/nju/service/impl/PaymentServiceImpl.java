@@ -2,13 +2,11 @@ package com.nju.service.impl;
 
 import com.nju.dao.PaymentDao;
 import com.nju.entity.Payment;
-import com.nju.entity.Payment;
 import com.nju.service.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -17,6 +15,9 @@ import java.util.List;
 @Service("paymentService")
 @Transactional
 public class PaymentServiceImpl implements PaymentService {
+//	public PaymentServiceImpl() {
+//		this.paymentDaoImpl= DaoFactory.getPaymentDao();
+//	}
 
 	@Autowired
 	private PaymentDao paymentDaoImpl;

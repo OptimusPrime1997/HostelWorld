@@ -10,7 +10,9 @@
         <property name="userType" column="userType"/>
         <property name="name" column="name"/>
         <property name="phoneNum" column="phoneNum"/>
+        <property name="id" column="id"/>
         <property name="balance" column="balance"/>
+        <property name="score" column="score" not-null="false"/>
         <property name="address" column="address"/>
         <property name="bankAccount" column="bankAccount"/>
         <property name="state" column="state">

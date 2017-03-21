@@ -2,13 +2,13 @@ package com.nju.service.impl;
 
 import com.nju.dao.OrderDao;
 import com.nju.entity.Order;
-import com.nju.entity.Order;
 import com.nju.service.OrderService;
+import com.nju.util.OrderState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +17,9 @@ import java.util.List;
 @Service
 @Transactional
 public class OrderServiceImpl implements OrderService {
-
+//	public OrderServiceImpl() {
+//		this.orderDaoImpl= DaoFactory.getOrderDao();
+//	}
 	@Autowired
 	private OrderDao orderDaoImpl;
 
@@ -47,5 +49,34 @@ public class OrderServiceImpl implements OrderService {
 
 	public List<Order> findAll() {
 		return orderDaoImpl.findAll();
+	}
+
+	public List<Order> findList(OrderState orderState, List<Order> orderList) {
+		if (orderList == null) {
+			orderList = findAll();
+		}
+		List<Order> resultList = new ArrayList<Order>();
+		for (Order o : orderList) {
+			if (o.getOrderState() == orderState) {
+				resultList.add(o);
+			}
+		}
+		return resultList;
+	}
+
+	public List<Order> findList(OrderState orderState) {
+		return orderDaoImpl.findList(orderState);
+	}
+
+	public List<Order> findListByUser(String userno,OrderState orderState) {
+		return orderDaoImpl.findListByUser(userno,orderState);
+	}
+
+	public List<Order> findListByUser(String userno) {
+		return orderDaoImpl.findListByUser(userno);
+	}
+
+	public List<Order> findListByHostel(String hostelno,OrderState orderState) {
+		return orderDaoImpl.findListByHostel(hostelno,orderState);
 	}
 }

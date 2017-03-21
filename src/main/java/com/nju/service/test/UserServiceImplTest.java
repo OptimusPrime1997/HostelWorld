@@ -34,8 +34,8 @@ public class UserServiceImplTest {
 	public void Aadd() throws Exception {
 //		@Autowired	123456	1	吴会员	18256781238	10000	江苏省南京市鼓楼区珠江路5号	6212261234567890005	NORMAL
 		User u = new User("1710100", "123456",
-				1, "张会员", "18256781239",
-				10000, "江苏省南京市鼓楼区珠江路10号",
+				1, "张会员", "18256781239", "5113025678123349876",
+				10000,0, "江苏省南京市鼓楼区珠江路10号",
 				"6212261234567890100", State.NORMAL);
 		userServiceImpl.add(u);
 		System.out.println("add member user successfully!id:" + u.getUserno());
@@ -50,8 +50,8 @@ public class UserServiceImplTest {
 	//	@Test
 	public void Bupdate() throws Exception {
 		User u = new User("1710100", "123456",
-				1, "张会员", "18256781239",
-				10000, "江苏省南京市鼓楼区珠江路100号",
+				1, "张会员", "18256781239", "5113025678123349876",
+				10000, 0,"江苏省南京市鼓楼区珠江路100号",
 				"6212261234567890100", State.NORMAL);
 		userServiceImpl.update(u);
 		System.out.println("update member user successfully!id:" + u.getUserno());
@@ -77,14 +77,25 @@ public class UserServiceImplTest {
 		}
 	}
 
+	public void FcheckLogin(String userno, String password) {
+		User u = userServiceImpl.get(userno);
+		System.out.println(u.toString());
+		if (u.getUserno().equals(password)) {
+			System.out.println("user-password right");
+		} else {
+			System.out.println("user-password unpaired");
+		}
+	}
+
 	public static void main(String[] args) {
 		UserServiceImplTest usit = new UserServiceImplTest();
 		try {
 //			usit.Aadd();
 //			usit.Bupdate();
-			usit.Cget();
-			usit.Ddelete();
-			usit.EfindAll();
+//			usit.Cget();
+//			usit.Ddelete();
+//			usit.EfindAll();
+			usit.FcheckLogin("1710001", "123456");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

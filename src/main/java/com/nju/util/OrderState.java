@@ -38,8 +38,9 @@ public enum OrderState implements Serializable {
 		this.str = str;
 	}
 
-	@Override
-	public String toString() {
-		return this.getStr();
-	}
+//	@Override
+//	public String toString() {
+//		return this.getStr();
+//	}
+
 }

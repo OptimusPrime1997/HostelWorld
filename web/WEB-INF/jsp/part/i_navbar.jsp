@@ -55,7 +55,7 @@
                     <a href="<%=response.encodeURL(request.getContextPath()+"/RegisteServlet")%>">
                         <button type="button" class="btn btn-success" id="registeBt">
                             <span class="glyphicon glyphicon-triangle-right"></span>
-                            注册
+                            登出
                         </button>
                     </a>
                 </li>

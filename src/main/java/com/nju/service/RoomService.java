@@ -19,4 +19,6 @@ public interface RoomService {
 	public Room get(String hostelno, String roomno);
 
 	public List<Room> findAll();
+
+	public List<Room> findListByHostel(String hostelno);
 }

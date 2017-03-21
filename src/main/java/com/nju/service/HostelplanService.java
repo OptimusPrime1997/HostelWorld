@@ -1,6 +1,7 @@
 package com.nju.service;
 
 import com.nju.entity.Hostelplan;
+import com.nju.util.PlanState;
 
 import java.util.List;
 
@@ -19,5 +20,9 @@ public interface HostelplanService {
 	public Hostelplan get(String planno);
 
 	public List<Hostelplan> findAll();
+
+	public List<Hostelplan> findList(String hostelno);
+
+	public List<Hostelplan> findList(String hostelno, PlanState planState);
 
 }

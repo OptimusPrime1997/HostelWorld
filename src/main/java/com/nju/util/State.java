@@ -6,12 +6,21 @@ import java.io.Serializable;
  * Created by OptimusPrime on 2017.3.8.
  */
 public enum State implements Serializable {
+/*
+	会员资格激活
+	办卡后，一次交纳1000元以上激活；
+	会费通过银行卡支付（数据库中的银行卡账号）；
+	会员资格暂停/恢复/停止
+	有效期一年，到期后卡上费用不足将暂停其记录；一旦支付，则恢复，
+	会员记录可用；暂停1年后未支付，会员记录停止 ；（系统自动完成）
+	会员资格取消
+	会员可通知系统取消资格（即停止）*/
+
 	INACTIVE(1, "未激活"),
 	NORMAL(2, "正常"),
 	VIP(3, "高级"),
 	ARREARAGE(4, "欠费"),
-	STOP(5, "暂停"),
-	LOGOFF(6, "注销");
+	STOP(5, "暂停");
 
 	private int code;
 	private String str;
@@ -55,9 +64,6 @@ public enum State implements Serializable {
 			case 5:
 				type = State.STOP;
 				break;
-			case 6:
-				type = State.LOGOFF;
-				break;
 			default:
 				System.out.println("State:get State failed!code---" + code);
 				type = State.INACTIVE;
@@ -77,8 +83,6 @@ public enum State implements Serializable {
 			type = State.ARREARAGE;
 		} else if (val.equals("暂停")) {
 			type = State.STOP;
-		} else if (val.equals("注销")) {
-			type = State.LOGOFF;
 		} else {
 			System.out.println("State->getState-String:failed!String:" + val);
 			type = State.INACTIVE;
@@ -86,8 +90,8 @@ public enum State implements Serializable {
 		return type;
 	}
 
-	@Override
-	public String toString() {
-		return this.getStr();
-	}
+//	@Override
+//	public String toString() {
+//		return this.getStr();
+//	}
 }

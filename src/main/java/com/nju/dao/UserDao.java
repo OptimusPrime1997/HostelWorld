@@ -19,4 +19,8 @@ public interface UserDao {
 
 	public List<User> findAll();
 
+	public List<User> findToPay();
+
+	public List<User> findList(int userType);
+
 }

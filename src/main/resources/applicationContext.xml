@@ -14,6 +14,7 @@
        http://www.springframework.org/schema/aop/spring-aop.xsd
        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
+
     <context:annotation-config/>
     <!--扫描注解包-->
     <context:component-scan base-package="com.nju.*"/>
@@ -68,56 +69,59 @@
                 <value>Payment.hbm.xml</value>
                 <value>Room.hbm.xml</value>
                 <value>User.hbm.xml</value>
+                <value>Roomdisplay.hbm.xml</value>
             </list>
         </property>
     </bean>
     <!--user-->
-    <bean id="userDaoImpl" class="com.nju.dao.impl.UserDaoImpl">
+    <!--<bean id="userDaoImpl" class="com.nju.dao.impl.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="userServiceImpl" class="com.nju.service.impl.UserServiceImpl">
         <property name="userDaoImpl" ref="userDaoImpl"/>
     </bean>
-    <!--bankaccount-->
+    &lt;!&ndash;bankaccount&ndash;&gt;
     <bean id="bankaccountDaoImpl" class="com.nju.dao.impl.BankaccountDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="bankaccountServiceImpl" class="com.nju.service.impl.BankaccountServiceImpl">
         <property name="bankaccountDaoImpl" ref="bankaccountDaoImpl"/>
     </bean>
-    <!--deposit-->
+    &lt;!&ndash;deposit&ndash;&gt;
     <bean id="depositDaoImpl" class="com.nju.dao.impl.DepositDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="depositServiceImpl" class="com.nju.service.impl.DepositServiceImpl">
         <property name="depositDaoImpl" ref="depositDaoImpl"/>
     </bean>
-    <!--hostelplan-->
+    &lt;!&ndash;hostelplan&ndash;&gt;
     <bean id="hostelplanDaoImpl" class="com.nju.dao.impl.HostelplanDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="hostelplanServiceImpl" class="com.nju.service.impl.HostelplanServiceImpl">
         <property name="hostelplanDaoImpl" ref="hostelplanDaoImpl"/>
     </bean>
-    <!--order-->
+    &lt;!&ndash;order&ndash;&gt;
     <bean id="orderDaoImpl" class="com.nju.dao.impl.OrderDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="orderServiceImpl" class="com.nju.service.impl.OrderServiceImpl">
         <property name="orderDaoImpl" ref="orderDaoImpl"/>
     </bean>
-    <!--payment-->
+    &lt;!&ndash;payment&ndash;&gt;
     <bean id="paymentDaoImpl" class="com.nju.dao.impl.PaymentDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="paymentServiceImpl" class="com.nju.service.impl.PaymentServiceImpl">
         <property name="paymentDaoImpl" ref="paymentDaoImpl"/>
     </bean>
-    <!--room-->
+    &lt;!&ndash;room&ndash;&gt;
     <bean id="roomDaoImpl" class="com.nju.dao.impl.RoomDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <bean id="roomServiceImpl" class="com.nju.service.impl.RoomServiceImpl">
         <property name="roomDaoImpl" ref="roomDaoImpl"/>
-    </bean>
+    </bean>-->
+
+
 </beans>
