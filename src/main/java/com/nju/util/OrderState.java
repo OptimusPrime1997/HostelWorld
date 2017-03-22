@@ -7,11 +7,8 @@ import java.io.Serializable;
  */
 public enum OrderState implements Serializable {
 	RESERVED(1, "预定"),
-
 	CANCEL(2, "取消"),
-
 	CHECKIN(3, "入住"),
-
 	CHECKOUT(4, "退房");
 
 	private int code;

@@ -110,10 +110,12 @@ public class MyReserveServlet extends HttpServlet {
 						PayType.MEMBERCARD, OrderState.RESERVED);
 				orderServiceImpl.add(order);
 				u.setBalance(u.getBalance() - pay);
+				u.setScore(u.getScore()+pay);
 				userServiceImpl.update(u);
 				User hostel = userServiceImpl.get(hostelno);
 				hostel.setBalance(hostel.getBalance() + pay);
 				userServiceImpl.update(hostel);
+
 
 //			Room(String hostelno, String roomno, RoomType roomType, String roomTimeState) ;
 				String roomTimeState = Constant.getDateString(start, end);

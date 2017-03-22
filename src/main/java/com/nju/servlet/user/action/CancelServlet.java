@@ -58,10 +58,11 @@ public class CancelServlet extends HttpServlet {
 
 				User hostel = userServiceImpl.get(order.getHostelno());
 				double backMoney = order.getPay() * Constant.BACKRATIO;
-				u.setBalance(u.getBalance() - backMoney);
+				u.setBalance(u.getBalance() + backMoney);
+				u.setScore(u.getScore() - order.getPay());
 				userServiceImpl.update(u);
 				hpSession.setAttribute("user", u);
-				hostel.setBalance(hostel.getBalance() + backMoney);
+				hostel.setBalance(hostel.getBalance() - backMoney);
 				userServiceImpl.update(hostel);
 
 				String greetings = "取消预定" + orderno + "成功！";

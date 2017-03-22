@@ -7,7 +7,6 @@ import java.io.Serializable;
  */
 public enum RoomState implements Serializable {
 	RESERVED(1, "预定"),
-
 	CHECKIN(2, "入住"),
 	EMPTY(3, "空闲");
 
